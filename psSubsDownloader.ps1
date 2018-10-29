@@ -1,6 +1,10 @@
-$episodes = Get-ChildItem -Filter *.mkv | % { $_.Name }
+param (
+    [string]$directory
+ )
+
+$episodes = Get-ChildItem $directory -Filter *.mkv | % { $_.Name }
 
 foreach ($row in $episodes)
 {
-   subliminal.exe download -l fr $row
+   subliminal.exe download -l fr -l en $row $directory
 }
